@@ -1,0 +1,21 @@
+## VALU ADDS
+.DS_Store
+.idea
+/vendor/
+/web/wp-admin/
+/web/wp-content/index.php
+/web/wp-content/plugins/akismet/
+/web/wp-content/plugins/
+/web/wp-content/plugins/*.php
+/web/wp-content/themes/twentynineteen/
+/web/wp-content/themes/twentyseventeen/
+/web/wp-content/themes/twentysixteen/
+/web/wp-content/themes/twentytwenty/
+/web/wp-content/themes/index.php
+/web/wp-includes/
+/web/wp-content/uploads/
+/web/*.yml
+/web/*.php
+/web/composer.lock
+/web/license.txt
+/web/readme.html
