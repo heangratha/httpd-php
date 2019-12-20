@@ -1,0 +1,6 @@
+version: '3.7'
+services:
+  web:
+    image: rathaheang/minikube-httpd-php73
+    environment:
+      LOCAL_USER_ID: 1001

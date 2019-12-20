@@ -58,6 +58,15 @@ This repository for setup wordpress on minikube
 
 You should see the new wordpress setup site pop up
 
+9. docker-composer.yml
+
+        version: '3.7'
+        services:
+          web:
+            image: rathaheang/minikube-httpd-php73
+            environment:
+              LOCAL_USER_ID: 1001
+
 
 ### NOTE
 If you want to change the domain reflect to your environment setup you can edit k8s.yaml

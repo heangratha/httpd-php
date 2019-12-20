@@ -26,6 +26,8 @@ ADD docker/php.ini /etc/php/7.3/apache2/php.ini
 ARG httpd_uid=1000
 ARG httpd_gid=1000
 RUN usermod -u $httpd_uid -o www-data && groupmod -g $httpd_gid -o www-data
+ADD docker/Entrypoint.sh /Entrypoint.sh
+ENTRYPOINT ["/Entrypoint.sh"]
 
 WORKDIR /var/www/html
 
