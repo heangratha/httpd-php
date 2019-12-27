@@ -7,6 +7,7 @@ RUN apt-get update -y && \
             curl \
             bzip2 \
             openssl \
+            less \
             php-apcu \
             php7.3-bcmath php7.3-bz2 php7.3-cli php7.3-common php7.3-curl \
             php7.3-gd php7.3-imap php7.3-interbase php7.3-intl php7.3-json \
