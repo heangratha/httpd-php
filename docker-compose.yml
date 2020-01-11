@@ -1,7 +1,6 @@
-version: '3.7'
+---
 
-volumes:
-  db-data:
+version: '3.7'
 
 services:
   web:
@@ -9,7 +8,7 @@ services:
     environment:
       LOCAL_USER_ID: 1001
     volumes:
-      - .:/var/www/html
+      - ./vendor:/var/www/html
       - ./docker/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./docker/php.ini:/etc/php/7.3/apache2/php.ini
     ports:
@@ -25,5 +24,6 @@ services:
       MYSQL_USER: project
       MYSQL_PASSWORD: project_pwd
       MYSQL_DATABASE: project
-    networks:
-      - backend
+
+volumes:
+  db-data:
