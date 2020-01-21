@@ -1,74 +1,45 @@
 # Overview
-This repository for setup wordpress on minikube 
+The local environment with Apache, PHP, and MySQL with docker and docker-compose.
 
 # Requirements
 
-- [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-- [composer](https://getcomposer.org/doc/00-intro.md)
 - [docker](https://docs.docker.com/install/)
-- [virtualbox](https://www.virtualbox.org/)
-- git
 
-# Installation
+# Integrate `httpd-php` with `WordPresss`
 
-1. Create project directory
+1. Clone repoositry into your root directory of `WordPress` project
+```
+cd YOUR_PROJECT_ROOT_DIRECTORY
+git clone https://github.com/heangratha/httpd-php.git httpd-php
+chmod u+x httpd-php/setup.sh
+```
 
-        mkdir ~/dev
-        git clone git@github.com:heangratha/minikube-httpd-php73.git ~/dev/local-wordpress.com
-        cd ~/dev/local-wordpress.com
-        comopser install
+2. Init the docker compose file
+```
+./httpd-php/setup.sh
+```
 
-2. Start minikube
+3. Up docker
+```
+docker-compose up -d
+```
 
-        minikube start
+__Note__: if there are conflict ports, kill theme and run above command again.
 
-3. Change Shared Folders minikube vm
+4. Configure database connection
+```
+define( 'DB_NAME', 'project' );
+define( 'DB_USER', 'root' );
+define( 'DB_PASSWORD', 'root' );
+define( 'DB_HOST', 'db' );
+```
+ 
+5. Create hosts file. Skip this step if you already add host
+```
+sudo vi /etc/hosts
+0.0.0.0 YOUR_PROJECT_DOMAIN
+```
 
-        open virtualbox -> minikube -> right click -> Settings -> Shared Folders -> edit shared folder
-        - Folder Path: ~/dev
-        - Folder Nmae: projects
+__Note__: example that you named your domain `local.wp-starter.host`.
 
-4. Stop and Star minikube
-
-        minikube stop
-        minikube start
-
-5. Configure minikube allow access internal pods
-
-        kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico-typha.yaml
-        kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-ds.yaml
-        kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
-
-6. Setup wordpress project with version 5.3
-
-        cd ~/dev/local-wordpress.com
-        kubectl apply -f k8s.yaml
-        minikube ip
-
-7. Create hosts file
-
-        sudo vi /etc/hosts
-        MINIKUBE_IP local-wordpress.com
-
-8. Test Website
-
-        Open you favourite browser
-        type: http://local-wordpress.com
-
-You should see the new wordpress setup site pop up
-
-9. docker-composer.yml
-
-        version: '3.7'
-        services:
-          web:
-            image: rathaheang/minikube-httpd-php73
-            environment:
-              LOCAL_USER_ID: 1001
-
-
-### NOTE
-If you want to change the domain reflect to your environment setup you can edit k8s.yaml
-
-        line 93: 'local-wordpress.com' -> 'yourdomain.com'
+5. Test Website by open browser with `http://local.wp-starter.host`
