@@ -1,9 +1,0 @@
-{
-    "type": "project",
-    "extra": {
-        "wordpress-install-dir": "web"
-    },
-    "require": {
-        "johnpbloch/wordpress": ">=5.3"
-    }
-}
